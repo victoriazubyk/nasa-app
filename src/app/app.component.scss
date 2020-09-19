@@ -1,0 +1,62 @@
+mat-toolbar {
+  margin-bottom: 40px;
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+}
+
+button {
+  padding: 0px 30px;
+  margin-bottom: 15px;
+}
+
+.app {
+  box-sizing: border-box;
+  padding: 0 16px;
+  width: 100%;
+  flex-direction: column;
+  align-items: center;
+  white-space: nowrap;
+
+  .app-controls {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    form {
+      text-align: center;
+
+      mat-form-field {
+        display: block;
+      }
+
+      .search-btn {
+        margin-bottom: 15px;
+      }
+    }
+  }
+
+  .app-gallery {
+    text-align: center;
+    padding: 0 15%;
+
+    .spinner-wrapper {
+      display: flex;
+      justify-content: center;
+    }
+  }
+
+  .error-message {
+    color: rgb(250, 7, 7)
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    padding: 5px;
+    box-sizing: border-box;
+  }
+
+}

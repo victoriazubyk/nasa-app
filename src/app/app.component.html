@@ -1,0 +1,60 @@
+<mat-toolbar>
+  <span>Nasa App</span>
+  <span class="example-spacer"></span>
+  <a mat-icon-button class="example-icon favorite-icon" href="https://www.facebook.com/vvictoria.zubyk" target="_blank" color="accent"><mat-icon>favorite</mat-icon></a>
+</mat-toolbar>
+
+<div class="app">
+    <div class="app-controls">
+      <h1>Welcome to NASA photo-finder</h1>
+      <p>Please select options below to begin</p>
+  
+      <form class="form" [formGroup]="form">
+        <mat-form-field appearance="fill">
+          <mat-label>Rover</mat-label>
+          <mat-select formControlName="rover">
+            <mat-option *ngFor="let rover of roverOptions" value="{{rover.value}}">{{rover.label}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Camera</mat-label>
+          <mat-select formControlName="camera">
+            <mat-option *ngFor="let camera of cameraOptions" value="{{camera.value}}">{{camera.label}}</mat-option>
+  
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <mat-label>Number</mat-label>
+          <input matInput formControlName="sol">
+        </mat-form-field>
+        <button class="search-btn" mat-raised-button color="primary" (click)="searchFotos()">Search</button>
+      </form>
+    </div>
+
+    <div class="app-gallery">
+      <p *ngIf="searchFlag && !errorText.length && !loadingStatus && !photosToDisplay.length">No photos for your request where found. Please try again with another options!</p>
+      
+      <div class="spinner-wrapper">
+        <mat-spinner *ngIf="loadingStatus"></mat-spinner>
+      </div>
+  
+      <div class="error-message">
+        <span>{{errorText}}</span>
+      </div>
+  
+      <mat-grid-list *ngIf="photosToDisplay.length" class="photos-list" [cols]="breakpoint" (window:resize)="onResize($event)">
+        <mat-grid-tile *ngFor="let photo of photosToDisplay">
+            <img class="list-item" src="{{photo.img_src}}" alt="NASA photo">
+        </mat-grid-tile>
+      </mat-grid-list>
+  
+      <button
+          *ngIf="searchFlag || photosToDisplay.length"
+          [disabled]="photosToDisplay.length === photos.length"
+          mat-raised-button color="primary" 
+          (click)="loadMore()">
+        Load more
+      </button>
+    </div>
+
+</div>
